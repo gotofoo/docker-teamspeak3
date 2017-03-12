@@ -2,26 +2,35 @@
 Teamspeak 3 Docker Container
 
 ## Run the container
-0.  Become root:
-
-    ```
-    sudo su
-    ```
-1.  Create a folder on your host for the configuration and data files (eg. sudo mkdir /config)
+1.  Create a folder on your host for the configuration and data files (eg. sudo mkdir /path/to/data)
 2.  Run the container:
 
-    ```
+    ```
     docker run -d --name ts3 \
-        -v /config:/data \
+        -v /path/to/data:/data \
         -p 9987:9987/udp -p 10011:10011 -p 30033:30033 \
         gotofoo/teamspeak3
-    ```
+    ```
 3.  If the teamspeak server cannot find any configuration and data files the data volume will be initialized with a fresh configuration. You can obtain the admin credentials and token from the log as follows:
   
-    ```
+    ```
     docker logs ts3
-    ```
-    
+    ```
+
+## Update to a new version
+1.  Stop the running instance:
+
+    ```
+    docker stop ts3
+    ```
+2.  Make shure that all data and configuration is stored outside of the container.
+3.  Remove the container:
+
+    ```
+    docker rm ts3
+    ```
+4.  Create a new instance as described under [Run the container](##Run the container)
+
 ## Optional environment variables
 |Environment Variable|Description|
 |--------------------|-----------|
