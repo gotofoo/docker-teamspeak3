@@ -1,8 +1,10 @@
 FROM debian:jessie
 
+#   Environment variables
 ENV UID 0
 ENV GID 0
 
+#   Setup container
 ADD entrypoint.sh /
 
 RUN apt update && apt install -y wget bzip2 && \
@@ -18,9 +20,12 @@ RUN apt update && apt install -y wget bzip2 && \
     chmod +x /entrypoint.sh && \
     mkdir /data
 
+#   Volumes
 VOLUME ["/data"]
 
+#   Ports
 EXPOSE 9987/udp 10011 30033
 
+#   Entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 
