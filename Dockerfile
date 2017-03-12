@@ -15,7 +15,7 @@ RUN apt update && apt install -y wget bzip2 && \
     tar -xjvf teamspeak.tar.bz2 --strip-components=1 -C /usr/local/bin/teamspeak3 && \
     rm teamspeak.tar.bz2 && \
     apt remove -y wget bzip2 && \
-    apt auto-remove && \
+    apt autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     chmod +x /entrypoint.sh && \
     mkdir /data
